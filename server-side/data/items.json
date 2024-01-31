@@ -1,0 +1,122 @@
+[
+  {
+    "name": "9 pcs bucket",
+    "description": "ayam yang di ambil dari pusat perternakan terbaik",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/spesial/thumbnail/kfc-web_9pc-bucket-_t.png"  },
+  {
+    "name": "wings bucket",
+    "description": "ayam terbaik",
+    "price": 21000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/spesial/thumbnail/kfc-web_wingsbucket_t.png"  },
+  {
+    "name": "winger combo bbq",
+    "description": "makanan enak dan gurih",
+    "price": 30000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/spesial/thumbnail/kfc-web_k_wingerspicy_sour_t.png"  },
+  {
+    "name": "fish fillet combo",
+    "description": "ikan yang di ambil dari pusat perternakan terbaik",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_fishfilletc_t.png"  },
+  {
+    "name": "kolonel yakiniku combo",
+    "description": "ayam dibuat dengan cabe rawit hijau",
+    "price": 21000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/praktis/kfc-web_colonelyakinikuc_t.png"  },
+  {
+    "name": "kombo kirspy",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/kombo/thumbnail/kfc-web_zuperkrunchc_t.png"  },
+  {
+    "name": "original don",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/praktis/thumbnail/oriental-don-400x300.png"  },
+  {
+    "name": "colonel burger",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/praktis/thumbnail/colonel-burger_400x300.png"  },
+  {
+    "name": "twist",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/praktis/thumbnail/kfc-web_twisty_t_1.png"  },
+  {
+    "name": "yakiniku don",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/praktis/thumbnail/yakiniku-don-400x300.png"  },
+  {
+    "name": "wingers",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_wingers_t.png"  },
+  {
+    "name": "spaghetty deluxe",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_spaghettydeluxe_t.png"  },
+  {
+    "name": "ovaltine",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/drinks/thumbnail/kfc-web_ovaltine_t_1.png"  },
+  {
+    "name": "mochafloat",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/drinks/thumbnail/kfc-web_mochafloat_t.png"  },
+  {
+    "name": "mangofloat",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/drinks/thumbnail/kfc-web_mangofloat_t.png"  },
+  {
+    "name": "chaki kids meal A",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/ckm_a_400x300.png"  },
+  {
+    "name": "chaki kids meal B",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/ckm_b_400x300.png"  },
+  {
+    "name": "scrambled egg",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_scrambled-egg_2_t.png"  },
+  {
+    "name": "ckm bfast A",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/praktis/thumbnail/ckm-bfast-a-400x300.png"  },
+  {
+    "name": "ckm bfast A",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/food-menu/praktis/thumbnail/ckm-bfast-b-400x300.png"  },
+  {
+    "name": "double choco krushers",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_double-choco-krushers_t.png"  },
+  {
+    "name": "ice blended cappucino",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_ice-blended-cappucino_t.png"  },
+  {
+    "name": "ice blended cappucino",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_ice-blended-cappucino_t.png"  },
+  {
+    "name": "iced latte",
+    "description": "makanan enak dan gurih",
+    "price": 20000,
+    "imgUrl": "https://files.kfcku.com/uploads/media/dummy/food/thumbnail/kfc-web_iced-latte_t.png"  }
+]

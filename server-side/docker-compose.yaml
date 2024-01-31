@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=12345
+      - MARIADB_DATABASE=kfc-db
+      - MARIADB_USER=root
+      - MARIADB_PASSWORD=12345
+    ports:
+      - 3306:3306
+    volumes:
+      - contact-manager-mariadb-data:/var/lib/mysql
+      - contact-manager-mariadb-config:/etc/mysql
+
+volumes:
+  contact-manager-mariadb-data:
+  contact-manager-mariadb-config:

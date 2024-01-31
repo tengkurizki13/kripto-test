@@ -1,0 +1,52 @@
+.active{
+    color: #e0d9d9;
+    font-size:x-large;
+    font-style:inherit;
+    font-weight: bold; 
+    text-decoration: none;
+    text-align: center;
+}
+.active:hover {
+    color: #000;
+   
+  }
+
+.pending{
+    color: #170a0a;
+    font-size:x-large;
+    font-style:inherit;
+    font-weight: bold; 
+    text-decoration: none;
+    text-align: center;
+    padding: 20 20;
+}
+
+.pending:hver{
+  color: #170a0a;
+  font-size:x-large;
+  font-style:inherit;
+  font-weight: bold; 
+  text-decoration: none;
+  text-align: center;
+  padding: 20 20;
+}
+
+ul {
+  list-style-type: square;
+}
+
+
+.imageItem {
+    width: 360px;
+    transition: width 0.5s;
+  }
+
+  .cardItem {
+    width: 360px;
+    transition: width 0.5s;
+  }
+  
+  .big-dot {
+    font-size: 2em; /* Atur ukuran titik bulat */
+    margin-right: 0.5em; /* Atur jarak antara titik bulat dan teks */
+  }
