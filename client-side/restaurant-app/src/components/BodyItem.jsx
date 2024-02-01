@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 
-function BodyItem({item}) {
+function BodyItem({item,handleClick}) {
     return <div className='shadow p-3 mb-5 bg-body rounded cardItem ms-2'>
     <img src={item.imgUrl} alt="" className='imageItem'/>
     <h3 className='text-center fst-italic text-capitalize'>{item.name}</h3>
@@ -10,7 +10,9 @@ function BodyItem({item}) {
       <div className="col-4"></div>
       <div className="col-4"></div>
       <div className="col-4">
-           <button className='btn btn-danger'>Pesan</button>
+           <button className='btn btn-danger' onClick={() => {
+      handleClick(item.id)
+    }}>Order</button>
       </div>
     </div>
   </div> 

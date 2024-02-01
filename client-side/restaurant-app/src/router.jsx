@@ -4,6 +4,7 @@ import {
 import App from "./App.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import DetailPage from "./pages/DetailPage.jsx";
 
   const router = createBrowserRouter([
     {
@@ -14,9 +15,13 @@ import ContactPage from "./pages/ContactPage.jsx";
                 element: <HomePage />
             },
             {
+              path:"/items/:id",
+              element: <DetailPage />
+            },
+            {
               path:"/contact",
               element: <ContactPage />
-          }
+            }
         ]
       },
   ]);

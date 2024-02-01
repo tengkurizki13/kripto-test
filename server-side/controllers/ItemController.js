@@ -13,6 +13,19 @@ class ItemController {
       next(error);
     }
   }
+
+  static async itemDetail(req, res, next) {
+    const { id } = req.params;
+    try {
+      let item = await Item.findByPk(id);
+
+      if (!item) throw { name: "notFound" };
+
+      res.status(200).json(item);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = ItemController;

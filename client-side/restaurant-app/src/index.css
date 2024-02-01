@@ -41,6 +41,11 @@ ul {
     transition: width 0.5s;
   }
 
+  .text-area {
+    height: 500px
+  }
+
+
   .cardItem {
     width: 360px;
     transition: width 0.5s;
