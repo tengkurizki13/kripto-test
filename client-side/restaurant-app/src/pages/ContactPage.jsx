@@ -1,20 +1,64 @@
 
-import { useRef,useState } from 'react';
-import emailjs from '@emailjs/browser';
+import { useRef,useState,useEffect } from 'react';
+import { fetchItems } from '../store/actions/actionCreator';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { orderHandler } from '../store/actions/actionCreator';
 function ContactPage() {
 
+  const dispatch = useDispatch()
   const form = useRef();
+  const navigate = useNavigate();
   const [requestList, setRequestList] = useState([{ request: "" }])
+  const {items} = useSelector(((state) => state.item))
+  const [data, setData] = useState({
+    portion:"",
+    userId : localStorage.userId,
+    itemId : 0,
+    specialRequest : requestList
+  })
 
-  
-  const handleNewRequest = () => {
-    setRequestList([...requestList,{ request:""}])
+  useEffect(() => {
+    dispatch(fetchItems())
+  },[])
+
+  function handleChange(e) {
+    setData({
+      ...data,
+      [e.target.name] : e.target.value
+    })
   }
 
-  const handleRemoveRequest = (index) => {
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(orderHandler(data,"special"))
+      .then(() => {
+          navigate("/")
+      })
+      .catch((err) => {
+        console.log("ada errr",err);
+        navigate(`/contact`)
+      })
+  }
+  
+  
+  function handleNewRequest() {
+    setRequestList([...requestList,{ request:""}])
+    setData({
+      ...data,
+      ["specialRequest"] : requestList
+    })
+  }
+
+  function handleRemoveRequest(index){
     const list = [...requestList]
     list.splice(index,1)
     setRequestList(list)
+    setData({
+      ...data,
+      ["specialRequest"] : list
+    })
   }
 
   const handleChangeRequest = (e,index) => {
@@ -22,21 +66,11 @@ function ContactPage() {
     const list = [...requestList]
     list[index][name] = value
     setRequestList(list)
+    setData({
+      ...data,
+      ["specialRequest"] : list
+    })
   }
-
-
-
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs.sendForm('service_6c5pkoo', 'template_cq2x1xx', form.current, 'zFpm9v01FSEMLFuOE')
-      .then((result) => {
-          console.log(result.text);
-          console.log("terkirim kawan!!!!");
-      }, (error) => {
-          console.log(error.text);
-      });
-  };
 
   return (
     <>
@@ -44,30 +78,28 @@ function ContactPage() {
       <div className="col-6">
         <pre className="mt-5 ">
         <span>Explanation :</span><br></br>
-         •  You can order food in large portions<br></br>
          •  You can order with special requests<br></br>
          •  You can also order catered food
          
         </pre>
       </div>
       <div className="col-6">
-      <h1 className='my-5 fw-bold'>Contact Form</h1>
-      <form ref={form} onSubmit={sendEmail}>
-      <div className="mb-2">
-        <label className="form-label fst-italic">Name</label>
-        <input type="text" name='name' className="form-control shadow p-3 bg-body rounded"/>
-      </div>
-       <div className="mb-2">
-        <label className="form-label fst-italic">Email address</label>
-        <input type="email" name='email' className="form-control shadow p-3 bg-body rounded" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-      </div>
+      <h1 className='mt-5 fw-bold'>Special Order</h1>
+      <form ref={form} onSubmit={handleSubmit}>
       <div className="mb-2">
         <label className="form-label fst-italic">Food Name</label>
-        <input type="text" name='food' className="form-control shadow p-3 bg-body rounded"/>
+      </div>
+      <div className="input-group mb-3">
+        <select className="form-select shadow p-3 bg-body rounded fst-italic text-secondary" name='itemId' id="inputGroupSelect01" onChange={(e) => handleChange(e)}>
+          <option selected>Choose...</option>
+          {items.map((item,index) => 
+            <option value={item.id} key={index}>{item.name}</option>
+          )}
+        </select>
       </div>
       <div className="mb-2">
-        <label className="form-label fst-italic">Portion</label>
-        <input type="number" name='portion' className="form-control shadow p-3 bg-body rounded"/>
+        <label className="form-label fst-italic">portion</label>
+        <input type="number" name='portion' id='portion' className="form-control shadow p-3 bg-body rounded" value={form.portion} onChange={(e) => handleChange(e)}/>
       </div>
       <div className="mb-2 form-request">
         <label className="form-label fst-italic">Special Request</label>

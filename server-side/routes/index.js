@@ -1,12 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const itemRoutes = require("./itemRoutes");
+const userRoutes = require("./userRoutes");
+const requestRoutes = require("./requestRoutes");
 
 router.get("/", (req, res) => {
   res.send("ok");
 });
 
+
+router.use(userRoutes);
 router.use(itemRoutes);
+router.use(requestRoutes);
 
 const errorHandler = (error, req, res, next) => {
   let status = 500;

@@ -1,13 +1,43 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { fetchItemById } from '../store/actions/actionCreator';
+import { orderHandler } from '../store/actions/actionCreator';
 
 function DetailPage() {
   let { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch()
   const {item} = useSelector(((state) => state.item))
   const[loading,setLoading] = useState(true)
+  const [form, setForm] = useState({
+    portion:"",
+    userId : localStorage.userId,
+    itemId : id,
+    specialRequest : [{ request: "" }]
+  })
+
+  function handleChange(e) {
+    setForm({
+      ...form,
+      [e.target.name] : e.target.value
+    })
+  }
+
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    console.log(form,"form");
+    dispatch(orderHandler(form))
+      .then(() => {
+          navigate("/")
+      })
+      .catch(() => {
+        navigate(`/items/${id}`)
+      })
+  }
 
   useEffect(() => {
     if(id) {
@@ -34,22 +64,10 @@ function DetailPage() {
       </div>
       <div className="col-6">
       <h1 className='fw-bold'>Order</h1>
-      <form >
+      <form onSubmit={handleSubmit}>
       <div className="mb-2">
-        <label className="form-label fst-italic">Name</label>
-        <input type="text" name='name' className="form-control shadow p-3 bg-body rounded"/>
-      </div>
-      <div className="mb-2">
-        <label className="form-label fst-italic">Portion</label>
-        <input type="number" name='food' className="form-control shadow p-3 bg-body rounded"/>
-      </div>
-       <div className="mb-2">
-        <label className="form-label fst-italic">Phone Number</label>
-        <input type="number" name='email' className="form-control shadow p-3 bg-body rounded" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-      </div>
-      <div className="mb-2">
-        <label className="form-label fst-italic">Address</label>
-        <textarea className="form-control  shadow p-3 bg-body rounded"></textarea>
+        <label className="form-label fst-italic">portion</label>
+        <input type="number" name='portion' id='portion' className="form-control shadow p-3 bg-body rounded" value={form.portion} onChange={(e) => handleChange(e)}/>
       </div>
       <div className="row mt-3">
         <div className="col-12 text-end">

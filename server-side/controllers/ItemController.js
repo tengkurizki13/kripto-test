@@ -9,7 +9,6 @@ class ItemController {
       let items = await Item.findAll(option);
       res.status(200).json(items);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
