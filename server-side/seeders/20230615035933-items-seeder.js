@@ -2,6 +2,8 @@
 
 const fs = require("fs");
 
+
+// get data from folder data
 let data = JSON.parse(fs.readFileSync("./data/items.json", "utf-8")).map(
   (item) => {
     item.createdAt = new Date();

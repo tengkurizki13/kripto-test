@@ -26,10 +26,10 @@ class AuthController {
           exclude: ["password"],
         },
     };
-      // get user has been created
+      // query get user has been created
       let user = await User.findByPk(newUser.id, option);
       
-      // response
+      // response success
       res.status(201).json([
         {
           message: "User has been created successfully",
@@ -37,8 +37,7 @@ class AuthController {
         },
       ]);
     } catch (error) {
-      console.log(error);
-      // log error to index
+     // next error to error handler
       next(error);
     }
   }
@@ -74,7 +73,7 @@ class AuthController {
       //  make token
       payload = encodedJson(payload);
 
-      // response
+      // response success
       res.status(200).json([
         {
           message: "User has been logged in",
@@ -87,8 +86,7 @@ class AuthController {
         },
       ]);
     } catch (error) {
-
-      // log error to index
+    // next error to error handler
       next(error);
     }
   }

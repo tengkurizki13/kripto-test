@@ -6,6 +6,8 @@ import {
 import Swal from 'sweetalert2';
 import emailjs from '@emailjs/browser';
 
+
+// fuction to create data to reducer
 export const itemsFetchSuccess = (payload) => {
   return {
     type: ITEMS_FETCH_SUCCESS,
@@ -20,36 +22,63 @@ export const itemByidFetchSuccess = (payload) => {
   };
 };
 
+
+// fucntions api to server
+
+// this fucntion api get items from server
 export const fetchItems = () => {
   return async (dispatch) => {
     try {
+      // api
       let response = await fetch(BASE_URL + "/items");
+
+      // contional if error
       if (!response.ok) throw new Error("upss something wrong");
+
+      // change data to json
       let data = await response.json();
+
+      // call other fuction
       dispatch(itemsFetchSuccess(data));
     } catch (error) {
-      console.log(error, "<<<dari action");
+      // log error
+      console.log(error);
     }
   };
 };
 
+
+// this fucntion api get item by id from server
 export const fetchItemById = (id) => {
   return async (dispatch) => {
     try {
+
+      // api
       let response = await fetch(BASE_URL + "/items/" + id);
+
+      // contional if error
       if (!response.ok) throw new Error("upss something wrong");
+
+      // change data to json
       let data = await response.json();
+
+      // call other fuction
       dispatch(itemByidFetchSuccess(data));
     } catch (error) {
-      console.log(error, "<<<dari action");
+
+      // log error
+      console.log(error);
     }
   };
 };
 
+
+// this fucntion api register from server
 export const registerHandler = (form) => {
   return async (dispatch) => {
     try {
       
+      // api
       const response = await fetch(BASE_URL + "/api/register", {
         method: "post",
         headers: {
@@ -57,29 +86,43 @@ export const registerHandler = (form) => {
         },
         body: JSON.stringify(form),
       });
+
+      // change data response to json
       const data = await response.json();
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'register successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
+
+
+      // contional if error
       if (!response.ok) throw new Error(data.message);
+
+      // sweet alert
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'register successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
     } catch (error) {
+
+      // sweet alert
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: error,
       });
+
+      // dispatch error
       dispatch(error);
     }
   };
 };
 
+
+// this fucntion api login from server
 export const loginHandler = (form) => {
   return async (dispatch) => {
     try {
+      // api
       const response = await fetch(BASE_URL + "/api/login", {
         method: "post",
         headers: {
@@ -87,13 +130,21 @@ export const loginHandler = (form) => {
         },
         body: JSON.stringify(form),
       });
+
+      // change data response to json
       const data = await response.json();
+
+      // contional if error
       if (!response.ok) throw new Error(data.message);
 
+
+      // set localstore
       localStorage.setItem("access_token", data[0].data.access_token);
       localStorage.setItem("userId", data[0].data.id);
       localStorage.setItem("username", data[0].data.username);
       localStorage.setItem("email", data[0].data.email);
+
+      // sweet alert
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -102,11 +153,15 @@ export const loginHandler = (form) => {
         timer: 1500,
       });
     } catch (error) {
+
+      // sweet alert error
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: error,
       });
+
+      // dispatch error
       dispatch(error);
     }
   };
@@ -116,10 +171,12 @@ export const loginHandler = (form) => {
 export const orderHandler = (form, type = "") => {
   return async (dispatch) => {
     try {
-
+      // change type data form to number
       form.portion = parseInt(form.portion);
       form.userId = parseInt(form.userId);
       form.itemId = parseInt(form.itemId);
+
+      // api order
       const response = await fetch(BASE_URL + "/api/order", {
         method: "post",
         headers: {
@@ -127,22 +184,42 @@ export const orderHandler = (form, type = "") => {
         },
         body: JSON.stringify(form),
       });
+
+      // change data response to json
       const data = await response.json();
+
+      // contional if error
       if (!response.ok) throw new Error(data.message);
+
+
+      // contional to chechk type order
       if (type === "special") {
+
+        // api to get item for content email
         let response = await fetch(BASE_URL + "/items/" + form.itemId);
-        if (!response.ok) throw new Error("upss something wrong");
+
+        // change data response to json
         let item = await response.json();
 
+        // contional  if error
+        if (!response.ok) throw new Error("upss something wrong");
+
+        // inisialize arr varialble arr to make content email
         const arr = form.specialRequest;
+
+        // inisialize arr varialble item to make content email
         const product = item;
         
+
+        // make content to sent email
         let emailContent = `Product Information:\n`;
         emailContent += `Name: ${product.name}\n`;
         emailContent += `Description: ${product.description}\n`;
         emailContent += `Price: Rp. ${product.price}\n`;
         emailContent += `Portion: ${form.portion} portion \n\n`;
         
+
+        // contional to special request
         if (arr[0].request !== "") {
           emailContent += `Below is a list of special requests:\n`;
           arr.forEach((item, index) => {
@@ -150,24 +227,33 @@ export const orderHandler = (form, type = "") => {
           });
         }
         
+
+        // object content email to admin
         const contentEmail = {
           email: localStorage.email,
           username:localStorage.username,
           message: emailContent
         };
-      emailjs.send('service_6c5pkoo', 'template_cq2x1xx', contentEmail, 'zFpm9v01FSEMLFuOE')
-      .then((result) => {
-          console.log(result.text);
-          console.log("terkirim kawan!!!!");
-      }, (error) => {
-          console.log(error.text);
-          Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: error.text,
-      });
-      });
+
+        // send email
+        emailjs.send('service_6c5pkoo', 'template_cq2x1xx', contentEmail, 'zFpm9v01FSEMLFuOE')
+          .then((result) => {
+            // log success
+              console.log(result.text);
+              console.log("terkirim kawan!!!!");
+          }, (error) => {
+            // log error
+              console.log(error.text);
+              Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: error.text,
+            });
+          });
       }
+
+
+      // sweet alert success
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -176,12 +262,15 @@ export const orderHandler = (form, type = "") => {
         timer: 1500,
       });
     } catch (error) {
-      console.log(error,"ini apa");
+
+      // sweet alert error
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: error,
       });
+
+      // dispatch error
       dispatch(error);
     }
   };

@@ -8,11 +8,14 @@ router.get("/", (req, res) => {
   res.send("ok");
 });
 
-
+// call sub routes
 router.use(userRoutes);
 router.use(itemRoutes);
 router.use(requestRoutes);
 
+
+
+// handle errors
 const errorHandler = (error, req, res, next) => {
   let status = 500;
   let message = "Internal Server Error";
